@@ -116,7 +116,6 @@
 //    }
 //}
 
-
 using ECom.UI.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -158,9 +157,15 @@ namespace ECom.UI.Controllers
 
                 if (result.Succeeded)
                 {
-                    // ✅ Assign role based on username
-                    var role = model.Username.ToLower() == "admin" ? "Admin" : "Customer";
-                    await _userManager.AddToRoleAsync(user, role);
+                    // Hardcoded role assignment
+                    if (model.Email == "admin@example.com")
+                    {
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "Customer");
+                    }
 
                     return RedirectToAction("Login", "User");
                 }
@@ -187,24 +192,27 @@ namespace ECom.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
 
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByNameAsync(model.Username);
-                    var roles = await _userManager.GetRolesAsync(user);
+                    if (user != null)
+                    {
+                        var roles = await _userManager.GetRolesAsync(user);
 
-                    if (roles.Contains("Admin"))
-                    {
-                        return RedirectToAction("Index", "AdminProduct");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
+                        if (roles.Contains("Admin"))
+                        {
+                            return RedirectToAction("Index", "AdminProduct");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                 }
 
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                ModelState.AddModelError("", "Invalid login attempt.");
             }
 
             return View(model);
