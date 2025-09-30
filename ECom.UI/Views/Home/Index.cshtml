@@ -1,0 +1,307 @@
+﻿@* 
+@model List<ECom.UI.Models.CategoryViewModel>
+@{
+    ViewData["Title"] = "Home";
+    var categories = Model;
+} *@
+
+
+
+
+@* 
+<div class="categories d-flex flex-wrap justify-content-around my-4">
+    @foreach (var category in categories)
+    {
+        <div class="category-card text-center">
+           
+            <img src="@Url.Content(category.ImagePath)" class="category-img" alt="@category.Name" />
+
+            <div>@category.Name</div>
+        </div>
+    }
+</div>  *@
+@* 
+
+<div class="categories d-flex flex-wrap justify-content-around my-4">
+    @foreach (var category in categories)
+    {
+        var redirectUrl = category.Name == "Fashion"
+            ? Url.Action("Fashion", "Home")
+            : "#"; // You can update this to redirect other categories too
+
+        <a href="@redirectUrl" class="text-decoration-none text-dark">
+            <div class="category-card text-center">
+                <img src="@Url.Content(category.ImagePath)" class="category-img" alt="@category.Name" />
+                <div>@category.Name</div>
+            </div>
+        </a>
+    }
+</div> *@
+
+
+
+
+@* Banner *@
+@* <section id="banner" class="text-white py-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <h2>🔥 Up to 70% Off on Weekend 🔥</h2>
+                <h2>Trendy Fashion Collection</h2>
+                <p>Limited time offer. Grab the best deals now!</p>
+            </div>
+            <div class="col-md-6 text-center">
+               <img src="@Url.Content("~/Images/Welcome.png")" class="banner-img" alt="Welcome to E-commerce site banner">
+            </div>
+        </div>
+    </div>
+</section>  *@
+
+@* Deals *@
+
+@*  <section class="deals my-3">
+    <h3>Best Deals on Smartphones</h3>
+    <div class="row">
+        <div class="col-md-2 deal-card text-center">
+            <img src="~/images/Smartphone1.png" alt="Samsung Galaxy S23">
+            <p>Samsung Galaxy S23<br />₹69,999</p>
+        </div>
+        <div class="col-md-2 deal-card text-center">
+            <img src="~/images/Smartphone2.png" alt="Realme Narzo S29">
+            <p>Realme Narzo S29<br />₹59,999</p>
+        </div>
+        <div class="col-md-2 deal-card text-center">
+            <img src="~/images/Smartphone3.png" alt="Redmi Note 12">
+            <p>Redmi Note 12<br />₹12,999</p>
+        </div>
+        <div class="col-md-2 deal-card text-center">
+           <img src="~/images/Smartphone6.png" alt="Oppo K13 Turbo">
+            <p>Oppo K13 Turbo<br />₹12,999</p>
+        </div>
+        <div class="col-md-2 deal-card text-center">
+          <img src="~/images/Smartphone5.png" alt="Vivo T4 Pro 5G">
+            <p>Vivo T4 Pro 5G<br />₹12,999</p>
+        </div>
+    </div>
+</section>
+
+
+<style>
+    body {
+        background-color: #FAFAFA;
+        color: #212529;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .category-card {
+        background-color: #ECEAEA;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 10px;
+        font-weight: 500;
+        box-shadow: 0 4px 7px rgba(0,0,0,0.15);
+        width: 170px;
+    }
+
+    .category-img {
+        width: 120px;
+        height: 140px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    #banner {
+        background: linear-gradient(to right, #6A0DAD, #8A2BE2);
+        border-radius: 10px;
+        min-height: 300px;
+        color: #fff;
+    }
+
+    .banner-img {
+        max-height: 400px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .deal-card {
+        background-color: #e3f2fd;
+        padding: 20px;
+        margin: 15px;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        width: 200px;
+    }
+
+    .deal-card img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    .deals .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .categories {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+</style>  *@
+
+
+
+
+@model List<ECom.UI.Models.CategoryViewModel>
+@{
+    ViewData["Title"] = "Home";
+    var categories = Model;
+}
+
+
+
+<div class="categories d-flex flex-wrap justify-content-around my-4">
+    @foreach (var category in categories)
+    {
+        var redirectUrl = category.Name == "Fashion"
+            ? Url.Action("Fashion", "Home")
+            : "#"; // You can update this to redirect other categories too
+
+       <a href="@redirectUrl" class="text-decoration-none text-dark">
+            <div class="category-card text-center">
+                <img src="@Url.Content(category.ImagePath)" class="category-img" alt="@category.Name" />
+                <div>@category.Name</div>
+            </div>
+        </a>
+    }
+</div>
+
+<!-- Banner -->
+<section id="banner" class="text-white py-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <h2>🔥 Up to 70% Off on Weekend 🔥</h2>
+                <h2>Trendy Fashion Collection</h2>
+                <p>Limited time offer. Grab the best deals now!</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="@Url.Content("~/Images/Welcome.png")" class="banner-img" alt="Welcome to E-commerce site banner">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Deals -->
+<section class="deals my-3">
+    <h3>Best Deals on Smartphones</h3>
+    <div class="row">
+        <div class="col-md-2 deal-card text-center">
+            <img src="~/images/Smartphone1.png" alt="Samsung Galaxy S23">
+            <p>Samsung Galaxy S23<br />₹69,999</p>
+        </div>
+        <div class="col-md-2 deal-card text-center">
+            <img src="~/images/Smartphone2.png" alt="Realme Narzo S29">
+            <p>Realme Narzo S29<br />₹59,999</p>
+        </div>
+        <div class="col-md-2 deal-card text-center">
+            <img src="~/images/Smartphone3.png" alt="Redmi Note 12">
+            <p>Redmi Note 12<br />₹12,999</p>
+        </div>
+        <div class="col-md-2 deal-card text-center">
+           <img src="~/images/Smartphone6.png" alt="Oppo K13 Turbo">
+            <p>Oppo K13 Turbo<br />₹12,999</p>
+        </div>
+        <div class="col-md-2 deal-card text-center">
+          <img src="~/images/Smartphone5.png" alt="Vivo T4 Pro 5G">
+            <p>Vivo T4 Pro 5G<br />₹12,999</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    body {
+        background-color: #FAFAFA;
+        color: #212529;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .category-card {
+        background-color: #ECEAEA;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 10px;
+        font-weight: 500;
+        box-shadow: 0 4px 7px rgba(0,0,0,0.15);
+        width: 170px;
+    }
+
+    .category-img {
+        width: 120px;
+        height: 140px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    #banner {
+        background: linear-gradient(to right, #6A0DAD, #8A2BE2);
+        border-radius: 10px;
+        min-height: 300px;
+        color: #fff;
+    }
+
+    .banner-img {
+        max-height: 400px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .deal-card {
+        background-color: #e3f2fd;
+        padding: 20px;
+        margin: 15px;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        width: 200px;
+    }
+
+    .deal-card img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    .deals .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .categories {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+</style>

@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Admin Profile";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card mt-4">
+    <div class="card-header">
+        Welcome, @ViewBag.Username!
+    </div>
+    <div class="card-body">
+        <p><strong>Username:</strong> @ViewBag.Username</p>
+        <p><strong>Role:</strong> Admin</p>
+        <a href="@Url.Action("EditProfile", "Admin")">Edit Profile</a>
+    </div>
+</div>

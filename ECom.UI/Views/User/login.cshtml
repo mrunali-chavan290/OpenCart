@@ -1,0 +1,70 @@
+﻿@model ECom.UI.Models.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* ... your styles ... */
+    .input-divider {
+        border-left: 2px solid #ccc;
+        height: 24px;
+        margin-left: 8px;
+        margin-right: 8px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 85vh;">
+    <div class="col-md-5">
+        <div class="card shadow-lg border-0 rounded-lg">
+            <div class="card-header bg-dark text-white text-center py-4 rounded-top-lg">
+                <h3 class="mb-0 fw-bold">Welcome Back! <i class="fas fa-shopping-basket"></i></h3>
+            </div>
+            <div class="card-body p-4">
+                <form asp-controller="User" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                    
+                    <input type="hidden" name="ReturnUrl" value="@ViewData["ReturnUrl"]" />
+
+                    <div class="mb-3">
+                       <label asp-for="Username" class="form-label font-weight-bold">Username</label>
+                       <input asp-for="Username" class="form-control" placeholder="Enter your username" />
+                       <span asp-validation-for="Username" class="text-danger small mt-1 d-block"></span>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label font-weight-bold">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                        <span asp-validation-for="Password" class="text-danger small mt-1 d-block"></span>
+                    </div>
+
+                    <div class="form-check mb-3"> 
+                        <input asp-for="RememberMe" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label">Remember Me</label>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg mt-3">
+                            <i class="fas fa-sign-in-alt me-2"></i> Log In
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer bg-light text-center py-3">
+                <small class="text-muted">
+                    <a>Don't have an account?
+                     <a asp-controller="User" asp-action="Register" class="text-decoration-none">Register now</a></a>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}  
